@@ -25,11 +25,6 @@ export default class Game {
     this.resizeView();
     window.addEventListener("resize", (e) => this.resizeView());
 
-    this.player = new PIXI.Graphics();
-    this.player.beginFill("0x" + Constants.COLOR_2);
-    this.player.drawRect(0, 0, 50, 50);
-    this.viewport.addChild(this.player);
-
     this.pixi.ticker.add((delta) => this.update(delta));
   }
 
@@ -44,7 +39,5 @@ export default class Game {
         : window.innerHeight;
   }
 
-  update(delta) {
-    this.viewport.follow(this.player);
-  }
+  update(delta) {}
 }
