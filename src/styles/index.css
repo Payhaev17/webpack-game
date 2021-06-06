@@ -15,3 +15,8 @@ body {
   max-width: 500px;
   margin: 0 auto;
 }
+
+canvas {
+  margin-top: 1em;
+  border-radius: 4px;
+}
