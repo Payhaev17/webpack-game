@@ -10,12 +10,25 @@ export default class Enemy extends PIXI.Graphics {
     this.endFill();
 
     this.game = game;
+    this.active = false;
+    this.alpha = 0;
     this.dir = { x: 0, y: 0 };
-    this.speed = 15;
+    this.speed = 10;
   }
 
   update(delta) {
-    this.x += this.dir.x * (this.speed * delta);
-    this.y += this.dir.y * (this.speed * delta);
+    if (!this.active) return;
+
+    if (this.y > this.game.getPixi().view.height) {
+      this.deactivate();
+    } else {
+      this.x += this.dir.x * (this.speed * delta);
+      this.y += this.dir.y * (this.speed * delta);
+    }
+  }
+
+  deactivate() {
+    this.active = false;
+    this.alpha = 0;
   }
 }
