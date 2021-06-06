@@ -1,7 +1,7 @@
 import * as PIXI from "pixi.js";
 import { Constants } from "../Constants";
 
-export default class Enemy extends PIXI.Graphics {
+export default class Bullet extends PIXI.Graphics {
   constructor(game, x, y, w, h) {
     super();
 
@@ -21,7 +21,7 @@ export default class Enemy extends PIXI.Graphics {
   update(delta) {
     if (!this.active) return;
 
-    if (this.y > this.game.getPixi().view.height) {
+    if (this.y < 0) {
       this.deactivate();
     } else {
       this.x += this.dir.x * (this.speed * delta);

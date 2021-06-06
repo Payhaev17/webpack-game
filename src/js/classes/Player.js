@@ -6,8 +6,10 @@ export default class Player extends PIXI.Graphics {
     super();
 
     this.beginFill("0x" + Constants.COLOR_2);
-    this.drawRect(x, y, w, h);
+    this.drawRect(0, 0, w, h);
     this.endFill();
+
+    this.position.set(x, y);
 
     this.game = game;
     this.dir = { x: 0, y: 0 };
@@ -44,6 +46,9 @@ export default class Player extends PIXI.Graphics {
           this.dir = { x: 1, y: 0 };
           this.lastMoveKey = 39;
         }
+        break;
+      case 32:
+        this.game.getBulletEmitter().activateBullet(this.x, this.y);
         break;
     }
   }
