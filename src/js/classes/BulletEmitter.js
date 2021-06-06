@@ -6,7 +6,7 @@ export default class BulletEmitter {
     this.bullets = [];
 
     for (let i = 0; i < 100; i++) {
-      this.bullets.push(new Bullet(this.game, 0, 300, 20, 20));
+      this.bullets.push(new Bullet(this.game, 0, 300, 10, 20));
       this.game.getPixi().stage.addChild(this.bullets[i]);
     }
   }

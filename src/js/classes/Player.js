@@ -15,12 +15,16 @@ export default class Player extends PIXI.Graphics {
     this.dir = { x: 0, y: 0 };
     this.speed = 15;
     this.lastMoveKey = false;
+    this.spacebarDown = false;
 
     window.addEventListener("keydown", (e) => this.input(e));
     window.addEventListener("keyup", (e) => this.input(e));
   }
 
   update(delta) {
+    this.changeDirection();
+    this.atacked();
+
     this.x += this.dir.x * (this.speed * delta);
     this.y += this.dir.y * (this.speed * delta);
   }
@@ -30,26 +34,49 @@ export default class Player extends PIXI.Graphics {
       case 37:
         if (e.type === "keyup") {
           if (this.lastMoveKey === e.keyCode) {
-            this.dir = { x: 0, y: 0 };
+            this.lastMoveKey = false;
           }
         } else {
-          this.dir = { x: -1, y: 0 };
           this.lastMoveKey = 37;
         }
         break;
       case 39:
         if (e.type === "keyup") {
           if (this.lastMoveKey === e.keyCode) {
-            this.dir = { x: 0, y: 0 };
+            this.lastMoveKey = false;
           }
         } else {
-          this.dir = { x: 1, y: 0 };
           this.lastMoveKey = 39;
         }
         break;
       case 32:
-        this.game.getBulletEmitter().activateBullet(this.x, this.y);
+        if (e.type === "keyup") {
+          if (this.spacebarDown === true) {
+            this.spacebarDown = false;
+          }
+        } else {
+          this.spacebarDown = true;
+        }
         break;
     }
+  }
+
+  changeDirection() {
+    switch (this.lastMoveKey) {
+      case 37:
+        this.dir = { x: -1, y: 0 };
+        break;
+      case 39:
+        this.dir = { x: 1, y: 0 };
+        break;
+      default:
+        this.dir = { x: 0, y: 0 };
+        break;
+    }
+  }
+
+  atacked() {
+    if (this.spacebarDown)
+      this.game.getBulletEmitter().activateBullet(this.x, this.y);
   }
 }

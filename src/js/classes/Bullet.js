@@ -5,7 +5,7 @@ export default class Bullet extends PIXI.Graphics {
   constructor(game, x, y, w, h) {
     super();
 
-    this.beginFill("0x" + Constants.COLOR_1);
+    this.beginFill("0x" + Constants.COLOR_2);
     this.drawRect(0, 0, w, h);
     this.endFill();
 
@@ -15,7 +15,7 @@ export default class Bullet extends PIXI.Graphics {
     this.active = false;
     this.alpha = 0;
     this.dir = { x: 0, y: 0 };
-    this.speed = 10;
+    this.speed = 15;
   }
 
   update(delta) {
