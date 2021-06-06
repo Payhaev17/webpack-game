@@ -16,12 +16,14 @@ export default class Player extends PIXI.Graphics {
     this.speed = 15;
     this.lastMoveKey = false;
     this.spacebarDown = false;
+    this.shootTimeout = { curr: 0, max: 2 };
 
     window.addEventListener("keydown", (e) => this.input(e));
     window.addEventListener("keyup", (e) => this.input(e));
   }
 
   update(delta) {
+    this.shootTimeoutHandler(delta);
     this.changeDirection();
     this.atacked();
 
@@ -61,6 +63,12 @@ export default class Player extends PIXI.Graphics {
     }
   }
 
+  shootTimeoutHandler(delta) {
+    if (this.shootTimeout.curr > 0) {
+      this.shootTimeout.curr -= delta;
+    }
+  }
+
   changeDirection() {
     switch (this.lastMoveKey) {
       case 37:
@@ -76,7 +84,11 @@ export default class Player extends PIXI.Graphics {
   }
 
   atacked() {
-    if (this.spacebarDown)
-      this.game.getBulletEmitter().activateBullet(this.x, this.y);
+    if (this.spacebarDown) {
+      if (this.shootTimeout.curr <= 0) {
+        this.game.getBulletEmitter().activateBullet(this.x, this.y);
+        this.shootTimeout.curr = this.shootTimeout.max;
+      }
+    }
   }
 }
