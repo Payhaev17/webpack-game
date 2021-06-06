@@ -15,7 +15,7 @@ export default class Enemy extends PIXI.Graphics {
     this.active = false;
     this.alpha = 0;
     this.dir = { x: 0, y: 0 };
-    this.speed = 10;
+    this.speed = 6;
   }
 
   update(delta) {

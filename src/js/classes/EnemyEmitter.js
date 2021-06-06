@@ -4,7 +4,7 @@ export default class EnemyEmitter {
   constructor(game) {
     this.game = game;
     this.enemys = [];
-    this.spawnTimeout = { curr: 0, max: 10 };
+    this.spawnTimeout = { curr: 0, max: 20 };
 
     for (let i = 0; i < 100; i++) {
       this.enemys.push(new Enemy(this.game, 0, 0, 40, 40));
