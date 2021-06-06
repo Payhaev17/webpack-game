@@ -86,7 +86,9 @@ export default class Player extends PIXI.Graphics {
   atacked() {
     if (this.spacebarDown) {
       if (this.shootTimeout.curr <= 0) {
-        this.game.getBulletEmitter().activateBullet(this.x, this.y);
+        this.game
+          .getBulletEmitter()
+          .activateBullet(this.x + this.width / 2, this.y);
         this.shootTimeout.curr = this.shootTimeout.max;
       }
     }

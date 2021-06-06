@@ -32,6 +32,10 @@ export default class Game {
     return this.bulletEmitter;
   }
 
+  getEnemyEmitter() {
+    return this.enemyEmitter;
+  }
+
   update(delta) {
     this.player.update(delta);
     this.enemyEmitter.update(delta);

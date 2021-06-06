@@ -12,6 +12,10 @@ export default class EnemyEmitter {
     }
   }
 
+  getEnemys() {
+    return this.enemys;
+  }
+
   update(delta) {
     this.spawnTimeoutHandler(delta);
 

@@ -21,6 +21,14 @@ export default class Bullet extends PIXI.Graphics {
   update(delta) {
     if (!this.active) return;
 
+    for (let enemy of this.game.getEnemyEmitter().getEnemys()) {
+      if (enemy.active && this.overlaps(enemy)) {
+        this.deactivate();
+        enemy.deactivate();
+        return;
+      }
+    }
+
     if (this.y < 0) {
       this.deactivate();
     } else {
@@ -32,5 +40,16 @@ export default class Bullet extends PIXI.Graphics {
   deactivate() {
     this.active = false;
     this.alpha = 0;
+  }
+
+  overlaps(rect) {
+    if (
+      this.x < rect.x + rect.width &&
+      this.x + this.width > rect.x &&
+      this.y < rect.y + rect.height &&
+      this.y + this.height > rect.y
+    ) {
+      return true;
+    }
   }
 }
