@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js";
 import { Constants } from "../Constants";
+import EnemyEmitter from "./EnemyEmitter";
 import Player from "./Player";
 
 export default class Game {
@@ -25,6 +26,8 @@ export default class Game {
     );
     this.pixi.stage.addChild(this.player);
 
+    this.enemyEmitter = new EnemyEmitter(this);
+
     this.pixi.ticker.add((delta) => this.update(delta));
   }
 
@@ -45,5 +48,6 @@ export default class Game {
 
   update(delta) {
     this.player.update(delta);
+    this.enemyEmitter.update(delta);
   }
 }
