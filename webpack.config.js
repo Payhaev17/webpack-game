@@ -1,10 +1,11 @@
 const path = require("path");
+
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-__webpack_base_uri__ = "http://localhost:3000";
+__webpack_base_uri__ = "http://localhost:4200";
 
 module.exports = {
   context: path.resolve(__dirname, "src"),

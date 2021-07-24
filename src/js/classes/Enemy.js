@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js";
+
 import { Constants } from "../Constants";
 
 export default class Enemy extends PIXI.Graphics {

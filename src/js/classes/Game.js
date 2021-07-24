@@ -1,5 +1,7 @@
 import * as PIXI from "pixi.js";
+
 import { Constants } from "../Constants";
+
 import Player from "./Player";
 import EnemyEmitter from "./EnemyEmitter";
 import BulletEmitter from "./BulletEmitter";
